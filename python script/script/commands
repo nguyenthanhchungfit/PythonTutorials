@@ -1,0 +1,110 @@
+get OS name
+
+$ cat /etc/*-release
+DISTRIB_ID=Ubuntu
+DISTRIB_RELEASE=16.04
+DISTRIB_CODENAME=xenial
+DISTRIB_DESCRIPTION="Ubuntu 16.04.5 LTS"
+NAME="Ubuntu"
+VERSION="16.04.5 LTS (Xenial Xerus)"
+ID=ubuntu
+ID_LIKE=debian
+PRETTY_NAME="Ubuntu 16.04.5 LTS"
+VERSION_ID="16.04"
+HOME_URL="http://www.ubuntu.com/"
+SUPPORT_URL="http://help.ubuntu.com/"
+BUG_REPORT_URL="http://bugs.launchpad.net/ubuntu/"
+VERSION_CODENAME=xenial
+UBUNTU_CODENAME=xenial
+
+---------------------------------------------------------------------------------
+
+get OS name
+$ lsb_release -a
+No LSB modules are available.
+Distributor ID:	Ubuntu
+Description:	Ubuntu 16.04.5 LTS
+Release:	16.04
+Codename:	xenial
+
+---------------------------------------------------------------------------------
+
+get java jdk version
+$ ll /zserver/java
+drwxrwxrwx 6 root root 4096 Th08 15 16:52 ./
+drwxrwxrwx 5 root root 4096 Th08  2 09:54 ../
+lrwxrwxrwx 1 root root   30 Th05 14 14:42 apache-ant -> /zserver/java/apache-ant-1.9.7/
+drwxrwxrwx 6 root root 4096 Th04  9  2016 apache-ant-1.9.7/
+lrwxrwxrwx 1 root root   32 Th05 14 14:42 apache-maven -> /zserver/java/apache-maven-3.3.9/
+drwxrwxrwx 6 root root 4096 Th05 14 14:42 apache-maven-3.3.9/
+lrwxrwxrwx 1 root root   30 Th05 14 14:42 jdk -> /zserver/java/jdk1.8.0_162-x64/
+drwxrwxrwx 8 uucp  143 4096 Th12 20  2017 jdk1.8.0_162-i586/
+drwxrwxrwx 8 uucp  143 4096 Th12 20  2017 jdk1.8.0_162-x64/
+lrwxrwxrwx 1 root root   31 Th05 14 14:42 jdk-32bits -> /zserver/java/jdk1.8.0_162-i586/
+lrwxrwxrwx 1 root root   50 Th08 15 16:52 lib -> /home/cpu11165-local/Documents/VNG/svn_shared/jars/
+-rwxrwxrwx 1 root root  522 Th05 14 14:42 set_env.cmd*
+
+---------------------------------------------------------------------------------
+
+$ ls -l /zserver/java/jdk
+/zserver/java/jdk1.8.0_162-x64/
+total 39256
+drwxrwxrwx 2 root           root              4096 Th08 15 17:15 ./
+drwxrwxrwx 3 root           root              4096 Th08  2 08:37 ../
+-rwxrwxr-x 1 cpu11165-local cpu11165-local 2580904 Th08 15 15:00 libjemalloc-4.2.0.so*
+-rwxrwxr-x 1 cpu11165-local cpu11165-local   90382 Th08 15 15:00 libjffi-1.2.so*
+-rwxrwxr-x 1 cpu11165-local cpu11165-local  683525 Th08 15 15:00 libJZCommonX-1.2.0.2.so*
+-rwxrwxr-x 1 cpu11165-local cpu11165-local  683929 Th08 15 15:00 libJZCommonX-1.2.0.3.so*
+-rwxrwxr-x 1 cpu11165-local cpu11165-local  688134 Th08 15 15:00 libJZCommonX-1.2.0.4.so*
+-rwxrwxr-x 1 cpu11165-local cpu11165-local  698374 Th08 15 15:00 libJZCommonX-1.2.0.5.so*
+-rwxrwxr-x 1 cpu11165-local cpu11165-local  698374 Th08 15 15:00 libJZCommonX-1.2.0.6.so*
+-rwxrwxr-x 1 cpu11165-local cpu11165-local  752511 Th08 15 15:00 libJZCommonX-1.2.0.7.so*
+-rwxrwxr-x 1 cpu11165-local cpu11165-local  766392 Th08 15 15:00 libJZCommonX-1.2.0.8.so*
+-rwxrwxr-x 1 cpu11165-local cpu11165-local  786651 Th08 15 15:00 libJZCommonX-1.2.0.9.so*
+-rwxrwxr-x 1 cpu11165-local cpu11165-local  771733 Th08 15 15:00 libJZCommonX-1.2.1.0.so*
+-rwxrwxr-x 1 cpu11165-local cpu11165-local  791151 Th08 15 15:00 libJZCommonX-1.2.1.1.so*
+-rwxrwxr-x 1 cpu11165-local cpu11165-local  846904 Th08 15 15:00 libJZCommonX-1.2.1.2.so*
+-rwxrwxr-x 1 cpu11165-local cpu11165-local 1225308 Th08 15 15:00 libJZCommonX-1.2.1.3.so*
+-rwxrwxr-x 1 cpu11165-local cpu11165-local 1257806 Th08 15 15:00 libJZCommonX-1.2.1.4.so*
+-rwxrwxr-x 1 cpu11165-local cpu11165-local 2305567 Th08 15 15:00 libKcdbX-1.0.0.0.so*
+-rwxrwxr-x 1 cpu11165-local cpu11165-local  774694 Th08 15 15:00 libZCommonX-1.2.0.3.so*
+-rwxrwxr-x 1 cpu11165-local cpu11165-local  778899 Th08 15 15:00 libZCommonX-1.2.0.4.so*
+-rwxrwxr-x 1 cpu11165-local cpu11165-local  794149 Th08 15 15:00 libZCommonX-1.2.0.5.so*
+-rwxrwxr-x 1 cpu11165-local cpu11165-local  794149 Th08 15 15:00 libZCommonX-1.2.0.6.so*
+-rwxrwxr-x 1 cpu11165-local cpu11165-local  869453 Th08 15 15:00 libZCommonX-1.2.0.7.so*
+-rwxrwxr-x 1 cpu11165-local cpu11165-local  887438 Th08 15 15:00 libZCommonX-1.2.0.8.so*
+-rwxrwxr-x 1 cpu11165-local cpu11165-local  911742 Th08 15 15:00 libZCommonX-1.2.0.9.so*
+-rwxrwxr-x 1 cpu11165-local cpu11165-local  900903 Th08 15 15:00 libZCommonX-1.2.1.0.so*
+-rwxrwxr-x 1 cpu11165-local cpu11165-local  924277 Th08 15 15:00 libZCommonX-1.2.1.1.so*
+-rwxrwxr-x 1 cpu11165-local cpu11165-local  980038 Th08 15 15:00 libZCommonX-1.2.1.2.so*
+-rwxrwxr-x 1 cpu11165-local cpu11165-local 1358452 Th08 15 15:00 libZCommonX-1.2.1.3.so*
+-rwxrwxr-x 1 cpu11165-local cpu11165-local 1399120 Th08 15 15:00 libZCommonX-1.2.1.4.so*
+-rwxrwxr-x 1 cpu11165-local cpu11165-local  731139 Th08 15 15:00 libZiCacheX-1.2.0.3.so*
+-rwxrwxr-x 1 cpu11165-local cpu11165-local  736864 Th08 15 15:00 libZiCacheX-1.2.0.4.so*
+-rwxrwxr-x 1 cpu11165-local cpu11165-local 1019263 Th08 15 15:00 libZiCacheX-1.2.0.5.so*
+-rwxrwxr-x 1 cpu11165-local cpu11165-local 1049271 Th08 15 15:00 libZiCacheX-1.2.0.6.so*
+-rwxrwxr-x 1 cpu11165-local cpu11165-local 4748728 Th08 15 15:00 libZiCacheX-1.2.0.7.so*
+-rwxrwxr-x 1 cpu11165-local cpu11165-local 4830133 Th08 15 15:00 libZiCacheX-1.2.0.8.so*
+
+
+---------------------------------------------------------------------------------
+
+get jzcommon version
+$ ls  /zserver/lib/zx
+libjemalloc-4.2.0.so     libJZCommonX-1.2.0.5.so  libJZCommonX-1.2.1.0.so  libKcdbX-1.0.0.0.so     libZCommonX-1.2.0.7.so  libZCommonX-1.2.1.2.so  libZiCacheX-1.2.0.5.so
+libjffi-1.2.so           libJZCommonX-1.2.0.6.so  libJZCommonX-1.2.1.1.so  libZCommonX-1.2.0.3.so  libZCommonX-1.2.0.8.so  libZCommonX-1.2.1.3.so  libZiCacheX-1.2.0.6.so
+libJZCommonX-1.2.0.2.so  libJZCommonX-1.2.0.7.so  libJZCommonX-1.2.1.2.so  libZCommonX-1.2.0.4.so  libZCommonX-1.2.0.9.so  libZCommonX-1.2.1.4.so  libZiCacheX-1.2.0.7.so
+libJZCommonX-1.2.0.3.so  libJZCommonX-1.2.0.8.so  libJZCommonX-1.2.1.3.so  libZCommonX-1.2.0.5.so  libZCommonX-1.2.1.0.so  libZiCacheX-1.2.0.3.so  libZiCacheX-1.2.0.8.so
+libJZCommonX-1.2.0.4.so  libJZCommonX-1.2.0.9.so  libJZCommonX-1.2.1.4.so  libZCommonX-1.2.0.6.so  libZCommonX-1.2.1.1.so  libZiCacheX-1.2.0.4.so
+
+
+---------------------------------------------------------------------------------
+
+get cpu cores
+$ grep -m 1 'cpu cores' /proc/cpuinfo
+cpu cores       : 4
+
+---------------------------------------------------------------------------------
+
+get ram memory
+$ grep -m 1 'MemTotal' /proc/meminfo

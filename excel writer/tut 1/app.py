@@ -24,6 +24,6 @@ for item, cost in (expenses):
 
 # Write a total using a formula.
 worksheet.write(row, 0, 'Total')
-worksheet.write(row, 1, '=SUM(B1:B4)')
+worksheet.write_formula(row, 1, '=SUM(B1:B4)')
 
 workbook.close()

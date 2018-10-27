@@ -3,7 +3,7 @@ import xlsxwriter
 
  # Create a workbook and add a worksheet.
 workbook = xlsxwriter.Workbook('Expenses03.xlsx')
-worksheet = workbook.add_worksheet()
+worksheet = workbook.add_worksheet('sheet')
 
  # Add a bold format to use to highlight cells.
 bold = workbook.add_format({'bold': 1})
@@ -48,3 +48,13 @@ worksheet.write(row, 0, 'Total', bold)
 worksheet.write(row, 2, '=SUM(C2:C5)', money_format)
 
 workbook.close()
+
+##
+## write_string()
+## write_number()
+## write_blank()
+## write_formula()
+## write_datetime()
+## write_boolean()
+## write_url()
+##
