@@ -108,3 +108,14 @@ cpu cores       : 4
 
 get ram memory
 $ grep -m 1 'MemTotal' /proc/meminfo
+
+---------------------------------------------------------------------------------
+
+get memcache
+ls -l /zserver/memcached
+
+---------------------------------------------------------------------------------
+
+get resize
+ls -l /zserver/lib/libJMagick.so
+ls: cannot access /zserver/lib/libJMagick.so: No such file or directory

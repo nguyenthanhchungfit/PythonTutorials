@@ -1,0 +1,5 @@
+sudo pip install paramiko | sudo pip3 install paramiko
+
+
+sudo apt-get install python3-setuptools
+sudo easy_install3 pip
