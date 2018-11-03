@@ -1,0 +1,85 @@
+$ ls -l /zserver/scribe/
+
+total 2488
+drwxr-xr-x 4 root    root       4096 Mar 14  2014 22.48
+drwxr-xr-x 2 root    root       4096 Mar 21  2016 bin
+drwxr-xr-x 2 root    root       4096 Mar 14  2014 bk
+drwxr-xr-x 2 root    root       4096 Mar 21  2016 lib
+-rw-r--r-- 1 zdeploy zdeploy     487 Dec  7  2016 scribe_1460.conf
+-rw-r--r-- 1 zdeploy zdeploy     498 Jul 12 16:20 scribe_1464.conf
+-rw-r--r-- 1 root    root        487 Jul 12 16:19 scribe_1464.conf.bk
+-rw-r--r-- 1 zdeploy zdeploy     498 Oct 19  2016 scribe_1465.conf
+-rw-r--r-- 1 zdeploy zdeploy     567 Oct 19  2016 scribe_1466.conf
+-rw-r--r-- 1 zdeploy zdeploy     567 Oct 19  2016 scribe_1467.conf
+-rw-r--r-- 1 zdeploy zdeploy     605 Jan  8  2018 scribe_1470.conf
+-rw-r--r-- 1 zdeploy zdeploy     487 Jul 26 08:45 scribe_1473.conf
+-rw-r--r-- 1 root    root        843 Sep 19  2017 scribe_1473.conf_bk
+-rw-r--r-- 1 root    root        488 Aug 11  2017 scribe_1560.conf
+-rw-r--r-- 1 root    root        763 Mar 10  2015 scribe_1563.conf
+-rw-r--r-- 1 zdeploy zdeploy     487 Jul 14  2017 scribe_1573.conf
+-rw-r--r-- 1 root    root        758 Nov 26  2013 scribe.conf
+-rw-r--r-- 1 root    root        740 Nov 27  2013 scribe_test.conf
+-rwxr-xr-x 1 zdeploy zdeploy 1650985 Dec  1  2017 zcribe
+-rwxr-xr-x 1 zdeploy zdeploy  817976 Oct 19  2016 zingscribe
+
+
+---------------------------------------------------------------------------------------------------
+
+$ cat /zserver/scribe/scribe_1460.conf
+
+#scribe for zingme
+
+port=1460
+max_msg_per_second=2000000
+check_interval=3
+
+
+# DEFAULT - forward all messages to Scribe on port 1463
+<store>
+category=default
+type=buffer
+
+target_write_size=20480
+max_write_interval=1
+buffer_send_rate=1
+retry_interval=10
+retry_interval_range=5
+
+<primary>
+type=network
+remote_host=10.30.6.193
+remote_port=1463
+</primary>
+
+<secondary>
+type=file
+fs_type=std
+file_path=/data/scribe_proxy
+base_filename=zmlog_backup_1465
+max_size=30000000
+</secondary>
+</store>
+
+
+---------------------------------------------------------------------------------------------------
+
+
+$ scribe is running
+ps -ef|grep /zserver/scribe/
+root      3496     1  0 Sep23 ?        00:04:45 /zserver/scribe/zcribe -c /zserver/scribe/scribe_1460.conf
+root      3513     1  0 Sep23 ?        00:05:43 /zserver/scribe/zcribe -c /zserver/scribe/scribe_1464.conf
+root      3529     1  0 Sep23 ?        00:00:08 /zserver/scribe/zcribe -c /zserver/scribe/scribe_1465.conf
+root      3541     1  0 Sep23 ?        00:00:07 /zserver/scribe/zcribe -c /zserver/scribe/scribe_1466.conf
+root      3568     1  0 Sep23 ?        00:00:07 /zserver/scribe/zcribe -c /zserver/scribe/scribe_1467.conf
+root      3615     1  0 Sep23 ?        00:04:19 /zserver/scribe/zcribe -c /zserver/scribe/scribe_1473.conf
+root      3668     1  0 Sep23 ?        00:02:05 /zserver/scribe/zcribe -c /zserver/scribe/scribe_1573.conf
+root      3783     1  0 Sep23 ?        00:00:07 /zserver/scribe/zcribe -c /zserver/scribe/scribe_1563.conf
+root      4016     1  0 Sep23 ?        00:00:07 /zserver/scribe/zcribe -c /zserver/scribe/scribe_1470.conf
+zdeploy  61588 61587  0 08:02 ?        00:00:00 bash -c ps -ef|grep /zserver/scribe/
+zdeploy  61608 61588  0 08:02 ?        00:00:00 grep /zserver/scribe/
+
+
+---------------------------------------------------------------------------------------------------
+
+$ md5sum /zserver/scribe/zcribe
+33214223ac1a2962f36d6769e9768683  /zserver/scribe/zcribe

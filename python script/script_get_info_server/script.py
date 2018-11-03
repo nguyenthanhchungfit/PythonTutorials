@@ -5,7 +5,6 @@ import paramiko
 import re
 
 # connect to server and get outputstream
-
 def getConnection(ip, username='zdeploy'):
     if(ip != ''):
         ssh = paramiko.SSHClient()
@@ -127,7 +126,7 @@ def extractJdkVersionV2(inputStream):
         verF = 0
         jdkRes = ''
         for jdk in listJdk:
-            ver = re.search('_(.+?)-', jdk)
+            ver = re.search('_(\d+)\.', jdk)
             if ver:
                 verNumber = int(ver.group(1))
                 if(verNumber > verF):
