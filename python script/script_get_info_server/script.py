@@ -126,7 +126,7 @@ def extractJdkVersionV2(inputStream):
         verF = 0
         jdkRes = ''
         for jdk in listJdk:
-            ver = re.search('_(\d+)\.', jdk)
+            ver = re.search('_(.+?)-', jdk)
             if ver:
                 verNumber = int(ver.group(1))
                 if(verNumber > verF):

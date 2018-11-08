@@ -10,7 +10,7 @@ def getConnection(ip, username='zdeploy'):
         ssh = paramiko.SSHClient()
         ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         try:
-            ssh.connect(hostname = ip, username=username)
+            ssh.connect(hostname = ip, username=username, timeout=2)
             print('*** Connected to:' + ip + ' with username=' + username)
             return ssh
         except IOError as error:
@@ -111,7 +111,7 @@ def extractInfoScribe(inputStream):
     listKeys = mapPrimary.keys()
     res_remote_host = ''
     res_remote_port = '0'
-    res_log_bin = 'old'
+    res_log_bin = 'NONE'
     res_write_type = 'syn'
     if('remote_host' in listKeys):
         res_remote_host = mapPrimary['remote_host']
@@ -168,7 +168,8 @@ def getListServerRes(listIp):
                     if(fullScribe in listRunningScribe):
                         status = 'running'
                 
-                    dicScribe['scribe_agent'] = port + ',' + status
+                    dicScribe['scribe_agent'] = port
+                    dicScribe['status'] = status
 
                     listScribe.append(dicScribe)
                 serverRes['list_scribe'] = listScribe
@@ -189,10 +190,11 @@ def exportDataToExcel(path_file_name, listServerRes):
     worksheet.write_string('E1', 'Remote port')
     worksheet.write_string('F1', 'Log bin')
     worksheet.write_string('G1', 'Write type')
+    worksheet.write_string('H1', 'Status')
 
     worksheet.set_column(0, 3, 20)
     worksheet.set_column(1, 1, 10)
-    worksheet.set_column(4, 6, 10)
+    worksheet.set_column(4, 7, 10)
     # Create a format to use in the merged range.
     merge_format = workbook.add_format({
         'align': 'center',
@@ -216,6 +218,7 @@ def exportDataToExcel(path_file_name, listServerRes):
                 worksheet.write_string(row, col + 2, scribe['remote_port'])
                 worksheet.write_string(row, col + 3, scribe['log_bin'])
                 worksheet.write_string(row, col + 4, scribe['write_type'])
+                worksheet.write_string(row, col + 5, scribe['status'])
                 row = row+1
         if(old_row == row):
             row = row + 1
@@ -247,9 +250,9 @@ def exportDataToExcel(path_file_name, listServerRes):
 # }]
 
 # main
-listIp = getListIp('list_ip_test')
+listIp = getListIp('list_ip')
 listServerRes = getListServerRes(listIp)
 total = exportDataToExcel('data_export.xlsx', listServerRes)
-print('\n\n************ Done!! Total: ' + str(total) + "****************\n\n")
+print('\n\n************ Done!! Total: ' + str(total) + " ****************\n\n")
 
 
