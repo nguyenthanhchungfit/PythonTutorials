@@ -4,13 +4,15 @@ import sys
 import paramiko
 import re
 
+cst_rams = [16, 24, 32, 64, 128, 196]
+
 # connect to server and get outputstream
 def getConnection(ip, username='zdeploy'):
     if(ip != ''):
         ssh = paramiko.SSHClient()
         ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         try:
-            ssh.connect(hostname = ip, username=username)
+            ssh.connect(hostname = ip, username=username,timeout=2)
             print('*** Connected to:' + ip + ' with username=' + username)
             return ssh
         except IOError as error:
@@ -56,6 +58,7 @@ def extractMemInfo(inputStream):
             ram = math.ceil(float(params[1])/(1024*1024))
         elif(params[2] == 'mB'):
             ram = math.ceil(float(params[1])/(1024))
+        ram = beautifyRam(ram)
         return ram
     return 0
 
@@ -213,6 +216,27 @@ def extractOsnameV2Os6(inputStream):
             return 'centos ' + version
     return ''
 
+def beautifyRam(ram):
+    idx = 0
+    posFind = -1
+    maxRun = len(cst_rams) -1
+    while idx < maxRun:
+        if(ram >= cst_rams[idx] and ram < cst_rams[idx + 1]):
+            if(ram == cst_rams[idx]):
+                posFind = idx
+            else:
+                aver = (cst_rams[idx] + cst_rams[idx+1])/2
+                if(ram >= aver):
+                    posFind = idx + 1
+                else:
+                    posFind = idx
+            break
+        idx = idx + 1
+    if(posFind >= 0 and posFind < maxRun):
+        return cst_rams[posFind]
+    if(ram == cst_rams[maxRun - 1]):
+        return cst_rams[maxRun - 1]
+    return ram
 
 # export object excel file (list cac dictionary)
 # object {'ip', 'memcache: ', 'resize: ', 'cpu: ', 'ram : ', 'os : ', 'jdk.version : ', 'jzcommonx.version : ', 'description : '}
@@ -289,6 +313,7 @@ def getListServerInfo(listIp):
             server['resize'] = extractResize(resizeStream)
 
             server['description'] = ''
+            print(server)
             listServer.append(server)
             sshClient.close()
     return listServer
@@ -358,8 +383,7 @@ def getListServerInfo(listIp):
 # '''
 
 # main:
-listIp = getListIp('list_ip_test')
+listIp = getListIp('list_ip')
 listServer = getListServerInfo(listIp)
-for server in listServer:
-    print(server)
 exportDataToExcel('server_data.xlsx', listServer)
+
